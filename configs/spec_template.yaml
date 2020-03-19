@@ -1,0 +1,25 @@
+nodes:
+    - name: R0
+      interfaces:
+        - { name: net0, type: direct, args: R1#net0 }
+    - name: R1
+      interfaces:
+        - { name: net0, type: direct, args: R0#net0 }
+
+pods:
+    - name: hoge
+      node: R0
+      image: slankdev/ubuntu:16.04
+    - name: hoge2
+      node: R1
+      image: slankdev/ubuntu:16.04
+
+podsConfigs:
+    - name: hoge
+      cmds: |
+        echo "hello"
+        echo "hoge"
+    - name: hoge2
+      cmds: |
+        echo "hello"
+        echo "hoge"
